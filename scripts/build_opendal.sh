@@ -47,12 +47,16 @@ clean() {
 
 ###############################
 
-if [ ! -f ../.env ]; then
-    echo "Error: .env file not found."
+SCRIPT_PATH="$(dirname "$0")"
+PROJECT_ROOT="${SCRIPT_PATH}/.."
+
+if [ ! -f "${PROJECT_ROOT}/.env" ]; then
+    echo "Error: .env file not found"
     exit 1
 fi
 
-source ../.env
+# shellcheck disable=SC1091
+source "$PROJECT_ROOT/.env"
 
 if [ -z "$OPENDAL_PATH" ]; then
     echo "Error: OPENDAL_PATH is not set in the .env file."
