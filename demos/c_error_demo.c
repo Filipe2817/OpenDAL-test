@@ -17,7 +17,7 @@ int main() {
 
     /* Lets print the error message out */
     struct opendal_bytes* error_msg = &r.error->message;
-    for (int i = 0; i < error_msg->len; ++i) {
+    for (unsigned int i = 0; i < error_msg->len; ++i) {
         printf("%c", error_msg->data[i]);
     }
 
