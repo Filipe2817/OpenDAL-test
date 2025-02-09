@@ -27,8 +27,13 @@ ifneq (,$(wildcard .env))
 endif
 
 # Compiler settings
+# Default build as release (override with 'make BUILD=debug' or 'make BUILD=sanitizer')
+BUILD = release
+FLAGS.release = -Wall -Wextra -pedantic-errors -O3
+FLAGS.sanitizer = -Wall -Wextra -pedantic-errors -g -fsanitize=address
+FLAGS.debug = -Wall -Wextra -pedantic-errors -O0 -g
 CC = gcc
-CFLAGS = -Wall -Wextra -pedantic-errors -O3
+CFLAGS = $(FLAGS.$(BUILD))
 OPENDAL_INCLUDE = -I$(OPENDAL_PATH)/bindings/c/include
 OPENDAL_LIB_PATH = -L$(OPENDAL_PATH)/bindings/c/target/debug
 OPENDAL_LIBS = -lopendal_c
@@ -36,7 +41,7 @@ LDFLAGS = -Wl,-rpath=$(OPENDAL_PATH)/bindings/c/target/debug # Embed library pat
 
 # Build settings
 BUILD_DIR := build
-SIMPLE_DIRS := random_tests demos
+SIMPLE_DIRS := random_tests demos function_examples
 PROJECT_DIRS := filesystem
 ALLOWED_DIRS := $(SIMPLE_DIRS) $(PROJECT_DIRS)
 
@@ -55,7 +60,7 @@ $$($(1)_TARGETS): $$(BUILD_DIR)/%: %.c
 	@$$(CC) $$(CFLAGS) $$(OPENDAL_INCLUDE) $$(OPENDAL_LIB_PATH) $$(LDFLAGS) $$< $$(OPENDAL_LIBS) -o $$@
 
 $(1): $$(BUILD_DIR) $$($(1)_TARGETS)
-	@printf "%b" "$$(GREEN_COLOR)$$(OK_STRING)$$(NO_COLOR) Built $(1)\n"
+	@printf "%b" "$$(GREEN_COLOR)$$(OK_STRING)$$(NO_COLOR) Built $(1) with $$(BUILD) configuration\n"
 	@printf "%b" "$$(YELLOW_COLOR)$$(INFO_STRING)$$(NO_COLOR) Use './build/$(1)/<exec_name>' to run\n"
 endef
 
@@ -78,7 +83,7 @@ $$($(1)_TARGET): $$($(1)_OBJECTS)
 	@mkdir -p $$(dir $$@)
 	@printf "%b" "$$(YELLOW_COLOR)$$(LINKING_STRING)$$(NO_COLOR) $$@\n"
 	@$$(CC) $$(CFLAGS) $$^ $$(OPENDAL_LIB_PATH) $$(LDFLAGS) $$(OPENDAL_LIBS) -o $$@
-	@printf "%b" "$$(GREEN_COLOR)$$(OK_STRING)$$(NO_COLOR) Built $(1)\n"
+	@printf "%b" "$$(GREEN_COLOR)$$(OK_STRING)$$(NO_COLOR) Built $(1) with $$(BUILD) configuration\n"
 	@printf "%b" "$$(YELLOW_COLOR)$$(INFO_STRING)$$(NO_COLOR) Use './$$($(1)_TARGET)' to run\n"
 
 $(1): $$($(1)_TARGET)
