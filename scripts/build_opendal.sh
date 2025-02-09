@@ -34,14 +34,17 @@ clean() {
     navigate
     echo "Cleaning OpenDAL build artifacts..."
 
-    if [ -d "build" ]; then
-        cargo clean
-        cd build
-        make clean
-        cd ..
-        rm -rf build
+    if [ ! -d "build" ]; then
+        echo "Nothing to clean."
+        exit 0
     fi
-    
+
+    cargo clean
+    cd build
+    make clean
+    cd ..
+    rm -rf build
+
     echo "Clean completed successfully."
 }
 

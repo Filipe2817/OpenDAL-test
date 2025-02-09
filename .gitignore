@@ -1,3 +1,12 @@
+# Test directories
 random_tests/
+
+# Configs
+.vscode/
 .env
+
+# Build files
+build/
+
+# Others
 todo.md
