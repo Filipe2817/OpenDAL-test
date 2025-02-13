@@ -22,11 +22,11 @@ int main(void) {
     // Load Data
     int fd = open("function_examples/bytes.txt", O_RDONLY);
     assert(fd != -1);
-    int size = 1048576;
+    uint32_t size = 1048576;
     char buffer1[size];
 
     int res = read(fd, &buffer1[0], size);
-    assert(res == size);
+    assert(res == (int)size);
     close(fd);
     
     opendal_bytes data = {
@@ -46,7 +46,7 @@ int main(void) {
     // Read the data in chunks
     uint16_t chunk_size = 1024;
     char buffer2[chunk_size];
-    int total_read = 0;
+    uint32_t total_read = 0;
     uint16_t total_chunks = 0;
     
     while (total_read < size) {
@@ -62,7 +62,7 @@ int main(void) {
     //    printf("%c", buffer2[i]);
     //}
     //printf("\n");
-    printf("Expected %d chunks, got %d\n", size / chunk_size, total_chunks);
+    printf("Expected %d chunks, read %d\n", size / chunk_size, total_chunks);
 
     // Cleanup
     opendal_reader_free(reader);
