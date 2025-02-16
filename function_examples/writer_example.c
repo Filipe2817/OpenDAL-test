@@ -52,7 +52,7 @@ int main(void) {
     }
 
     /**
-     * OpenDAL writer free acts like a close operation.
+     * OpenDAL writer free acts like a flush / close operation.
      * Reading before closing will return an outdated result or an error.
      */
     opendal_writer_free(writer);

@@ -291,7 +291,7 @@ TO DO
 
 - Metadata: length, last modified, is dir, is file
 
-- Lister (iterator of objects under a path): entry_name; entry_path; next
+- Lister (iterator of objects under a path): entry_name; entry_path; next (lister examples on docs are wrong/outdated)
 
 > Notes:
 >> Most (not sure if all) of these features are blocking (not async)
