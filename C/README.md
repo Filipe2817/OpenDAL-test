@@ -53,7 +53,7 @@ make demos
 
 ### Remove OpenDAL
 
-Run the makefile clean OpenDAL rule:
+Run the makefile clean OpenDAL rule to remove the build files:
 
 ```bash
 make clean-opendal
