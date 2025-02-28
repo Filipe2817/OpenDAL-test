@@ -10,3 +10,9 @@ build/
 
 # Others
 todo.md
+
+# Rust build directory
+target/
+
+# Rust dependencies
+Cargo.lock
