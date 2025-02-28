@@ -33,7 +33,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ### Build OpenDAL
 
 Clone the OpenDAL repository and add a .env file with the absolute path to the repository \
-Follow the [.env.example](.env.example)
+Follow the [.env.example](../.env.example)
 
 Run the makefile build OpenDAL rule:
 
