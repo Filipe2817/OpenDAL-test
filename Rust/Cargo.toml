@@ -5,4 +5,5 @@ edition = "2021"
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }
-opendal = "0.52.0"
+opendal = { version = "0.52.0", features = ["services-fs"] }
+futures = "0.3.31"
