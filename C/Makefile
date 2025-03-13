@@ -42,7 +42,7 @@ LDFLAGS = -Wl,-rpath=$(OPENDAL_PATH)/bindings/c/target/debug # Embed library pat
 # Build settings
 BUILD_DIR := build
 SIMPLE_DIRS := random_tests demos function_examples
-PROJECT_DIRS := filesystem
+PROJECT_DIRS :=
 ALLOWED_DIRS := $(SIMPLE_DIRS) $(PROJECT_DIRS)
 
 .PHONY: $(SIMPLE_DIRS) $(PROJECT_DIRS) help build-opendal clean-opendal clean
