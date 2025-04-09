@@ -5,5 +5,5 @@ edition = "2021"
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }
-opendal = { version = "0.52.0", features = ["services-fs"] }
+opendal = { version = "0.52.0", features = ["services-fs", "layers-chaos", "layers-fastrace"] }
 futures = "0.3.31"
